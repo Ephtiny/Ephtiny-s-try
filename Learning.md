@@ -180,7 +180,7 @@ $ git add .
 $ git commit -m ""
 ```
 
-3.将这些更新同步到远程仓库
+3.将修改同步到远程仓库
 
 ```
 $ git push origin main
