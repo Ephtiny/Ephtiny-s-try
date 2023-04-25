@@ -200,6 +200,32 @@ $ git commit -m ""
 $ git push origin main
 ```
 
-​	这里最后的部分不一定是main，而是代码段上一行最后的括号里的内容，如图：
+这里最后不一定是main，这个是我们在GitHub创建新仓库时的默认分支(branch)，如果输入它出现下面的error
 
-![image-20230425204846578](https://gitee.com/ephtiny/image/raw/master/img/202304252048653.png)
+```shell
+Administrator@LAPTOP-PF75F21S MINGW64 /e/study/Digital Circuit/Digital_Circuit (master)
+$ git push origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'github.com:Ephtiny/Digital-Circuit.git'
+```
+
+- 法1：这时可以看到第一行最后面有一个括号，括号内就是我们的分支，将main改成它就可以了
+- 法2：参考[关于git的问题：error: src refspec main does not match any_TripleGold.的博客-CSDN博客](https://blog.csdn.net/gongdamrgao/article/details/115032436)将分支修改
+
+
+
+如果出现下面的error
+
+![image-20230425211857449](https://gitee.com/ephtiny/image/raw/master/img/202304252118522.png)
+
+出现原因：当你修改了线上文件，或者其他文件，但是没有对本地库进行同步。
+
+这个问题是因为远程库与本地库不一致造成的，那么我们把远程库同步到本地库就可以了。
+
+```shell
+$ git pull --rebase origin main
+```
+
+​	这里的意思就是把远程库合并到本地。`-rebase` 的作用是取消本地库中之前的提交
+
+​	需要注意的是：将据上次提交的所有修改都复制下来，或者将修改的文件备份，方便将远程库合并下来后再次修改
