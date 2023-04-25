@@ -4,7 +4,7 @@
 
 1.先通过下面代码创建一个空目录
 
-```
+```shell
 $ mkdir learngit
 $ cd learngit
 $ pwd
@@ -14,7 +14,7 @@ $ pwd
 
 2.通过`git init`命令把这个目录变成Git可以管理的仓库
 
-```
+```shell
 $ git init
 ```
 
@@ -26,13 +26,13 @@ $ git init
 
 1.用`git add`把文件添加到仓库（下面的<>在输入时是不需要的）
 
-```
+```shell
 $ git add <文件名.后缀>
 ```
 
 2.用`git commit`把文件提交到仓库
 
-```
+```shell
 $ git commit -m "说明"
 ```
 
@@ -40,7 +40,7 @@ $ git commit -m "说明"
 
 ​	可以通过`add`一次添加多个文件，然后用`commit`一次性提交，如：
 
-```
+```shell
 $ git add file1.txt
 $ git add file2.txt file3.txt
 $ git commit -m "add 3 files."
@@ -66,7 +66,7 @@ $ git diff <文件名>
 
 1.可以通过 `git log` 获得从最近到最远的提交日志，其中 `commit` 后面的一串十六进制的数值是 `commit id` （版本号），日志如下：
 
-```
+```shell
 $ git log
 commit 45f1c55881db3755631c2bf4565b488e2916a5bd (HEAD -> main)
 Author: Ephtiny <you@example.com>
@@ -97,7 +97,7 @@ Date:   Fri Apr 7 22:02:01 2023 +0800
 
 ​	如果觉得显示太多还可以用 `git log --pretty=oneline` 即加上后面这个参数，效果如下：
 
-```
+```shell
 45f1c55881db3755631c2bf4565b488e2916a5bd (HEAD -> main) append GPL
 fb179a134f34b67ef6d60679b2df34d214952b4e 未尝试修改多个文件后直接用git diff查询
 79081cab329009fb9a0800c7c22ef426f6117ecd “
@@ -105,6 +105,20 @@ ec4b0942e2dd21f6712aab0b20ada52ff156b768 add distributed
 3721d97507e4531a6706564ab3a35c455dd0fdd6 写了一个readme.txt
 c21f50e5ea976f0ff86da1ed70c48d28a64e1cd4 (origin/main) add readme
 ```
+
+现在准备把文件回退回之前的版本：
+
+- 首先需要知道当前是哪个版本，可以用HEAD表示当前版本。HEAD^可以表示上一个版本， HEAD^^可以表示上上个版本，上n个版本可以用HEAD~n表示
+
+- 使用 git reset回退版本
+
+  ```shell
+  $ git reset --hard HEAD^
+  ```
+
+  这里的 --hard参数后面再讲
+
+- 当进行版本回退后，日志里回退版本后的版本就不见了，只能先记下当前命令行窗口内的版本号（相对于回退后的未来的版本号仍可使用，但日志里的看不到了）
 
 未完待续...
 
@@ -136,7 +150,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 2.在本地的Digital Circuit仓库下运行下面的命令
 
-```
+```shell
 $ git remote add origin git@github.com:Ephtiny/Digital-Circuit.git
 ```
 
@@ -146,7 +160,7 @@ $ git remote add origin git@github.com:Ephtiny/Digital-Circuit.git
 
 3.把本地库的所有内容推送到远程库上
 
-```
+```shell
 $ git push -u origin master
 ```
 
@@ -160,7 +174,7 @@ $ git push -u origin master
 
 2.自选一个位置git bash here，并输入
 
-```
+```shell
 $ git clone git@github.com:Ephtiny/Ephtiny-s-try.git
 ```
 
@@ -170,19 +184,19 @@ $ git clone git@github.com:Ephtiny/Ephtiny-s-try.git
 
 1.将修改添加到暂存区
 
-```
+```shell
 $ git add .
 ```
 
 2.填写修改信息
 
-```
+```shell
 $ git commit -m ""
 ```
 
 3.将更新同步到远程仓库
 
-```
+```shell
 $ git push origin main
 ```
 
