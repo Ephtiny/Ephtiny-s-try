@@ -112,7 +112,7 @@ c21f50e5ea976f0ff86da1ed70c48d28a64e1cd4 (origin/main) add readme
 
 GitHub提供Git仓库托管服务，只需注册一个GitHub账号就可以免费获得Git远程仓库
 
-注册后由于本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要一点设置：
+注册后由于本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要一点设置（如果创建过SSH Key则不需要再创建）：
 
 1.创建SSH Key：
 
@@ -122,13 +122,13 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 ​	把上面的邮件地址换成自己的，然后一路回车使用默认值即可
 
-​	一切顺利的话可以再用户主目录里找到`.ssh`目录，里面有 `id_rsa`和 `id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对， `id_rsa`是私钥，不能泄露出去， `id_rsa.pub`是公钥，可以放心地告诉他人
+​	一切顺利的话可以再用户主目录（在C盘）里找到`.ssh`目录，里面有 `id_rsa`和 `id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对， `id_rsa`是私钥，不能泄露出去， `id_rsa.pub`是公钥，可以放心地告诉他人
 
 2.登录GitHub，点击右上角头像的settings里的SSH and GPG keys，点击New SSH key，填上任意Title，在Key文本框里粘贴 `id_rsa.pub`文件的内容后，点击Add Key
 
 ## 添加远程库
 
-1.登录GitHub，然后New repository，创建远程仓库，其中仓库名称最好别是中文，如Digital Circuit
+1.登录GitHub，然后New repository，创建远程仓库，其中仓库名称最好不是中文，如Digital Circuit
 
 ​	接下来GitHub会给出一些基础的帮助
 
@@ -185,4 +185,21 @@ $ git commit -m ""
 ```
 $ git push origin main
 ```
+
+​	这里最后不一定是main，这个是我们在GitHub创建新仓库时的默认分支(branch)，如果输入它出现下面的error
+
+```shell
+Administrator@LAPTOP-PF75F21S MINGW64 /e/study/Digital Circuit/Digital_Circuit (master)
+$ git push origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'github.com:Ephtiny/Digital-Circuit.git'
+
+```
+
+- 法1：这时可以看到第一行最后面有一个括号，括号内就是我们的分支，将main改成它就可以了
+- 法2：参考[关于git的问题：error: src refspec main does not match any_TripleGold.的博客-CSDN博客](https://blog.csdn.net/gongdamrgao/article/details/115032436)将分支修改
+
+​	
+
+
 
